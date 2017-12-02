@@ -5,7 +5,8 @@ A 5 volt regulator is a device that is able to provide 5 Volts while taking in u
 # Board Selection
 The board we chose to use for this section was the MSP430FR6989. This board was chosen because of its built-in LCD display screen, which was used to visually show the temperature changing as an ADC value. We avoided adding conversion code that would slow down our temperature readings. For the load on the regulator output we had a 5 Watt 100 ohm resistor that gave us a good temperature range for the lab requirements.
 # Fan Control
-![Open Loop Schematic](lab-6taking-control-over-your-embedded-life-kevinandnathan/Open Loop Systems/OpenloopSchematic.PNG)
+![Open Loop Schematic](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Open%20Loop%20Systems/OpenloopSchematic.PNG)
+
 The fan we chose to operate within our circuit ran off of 12 volts, which is well above the capacity of the MSP4306989. We used a NMOS mosfet to switch the power supplied from to the fan on and off with a PWM signal. The duty cycle would essentially control when the fan was on and off which could be pretty noisy if the fan was being switched at a fast rate. We placed the fan directly head on, facing the circuit perpendicularly, to make sure the 5 volt regulator got as much cooling as possible.
 
 # Temperature Reading
