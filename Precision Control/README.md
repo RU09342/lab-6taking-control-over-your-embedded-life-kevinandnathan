@@ -1,16 +1,32 @@
-# Lab 6: Precision Control
-Some applications require large amounts of voltage or current, so switching techniques must be used in order to provide the desired output. Other cases however require a finer control over the voltage or current going into them (some even require a control over resistance). So far you have looked at PWM to control the brightness of an LED, is there a way to use this to output a specified voltage or current, or even a specific waveform?
+# Precision Control
+It makes sense that one would be able to alter the output voltage or current in a handmade circuit. In a practical application, it is important for a system to be responsive to the user and as accurate as possible. The goal of this section is to change the outcome of the circuit to whatever value the user desires.
 
-## PWM Part 2
-Since you already have the code to perform PWM, then really, the software side of this part of the lab is fairly easy. You need to design a system which can take in a PWM duty cycle over something like UART (or you could have your system read in the position of a potentiometer), and produce that signal on a GPIO. The interesting part comes in when I want the output of your system to be an Analog voltage. In this case, a PWM with a 50% duty cycle should produce roughly Vcc/2 volts. This part of the lab should be done with the MSP430F5529 and the physical circuit should be constructed of an active Low-Pass Filter.
+## PWM
+Since the PWM code has already been created in a previous lab, all that really leaves is the hardware aspects. 
 
 ## R2R DAC
-What if your system is noise sensitive or possibly needs more precision than just a PWM signal, you might need to look into using an actual Digital-to-Analog converter. One of the simplest DAC architectures is a R2R ladder. Using the MSP430F5529, you need to generate an 8-bit R2R ladder circuit that can produce "255" voltages between 0V and Vcc. Now how are you actually going to test this, cause I am sure you aren't going to measure 255 voltages on the DMM. You should set up your F5529 so it generates a staircase using a binary counter and then record on the oscilloscope the resulting waveform.
+Sometimes a system needs to be more accurate than it currently might be, for purposes of measurements or precision. One way to fix this issue is to use a DAC, or digital to analog converter.
+![R2RDAC](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/R2R_DAC.png)
+The picture above shows a standard DAC used in this lab. A DAC consists of several matching resistors in series with one another, and another set of different value matching resistors coming from several different sources, that meet up with the original resistors. In this case, we used 1k resistors strung together in series, and 2k resistors branching onto them, as well as a 2k resistor at the end.
 
 ## Loading Effects
-Obviously you are going to be making this type of circuitry to drive something. This introduces the idea of loading effect, wherein your circuit will perform differently based on what is going to be attached to it. For each of these implementations, try placing a variety of resistors from 100 ohms up to see what happens to your output signal and comment on what is happening.
+Once the DAC is completed and operational, it is important to add a load that can test the capabilities of the system. This can be simulated by placing different valued resistors at the end of the circuit.
+![R2R1MEG](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/triangle1meg1.png)
+The graph above shows what happens when a 1M ohm resistor was placed at the end of the DAC. A perfect triangle wave was returned on the oscilloscope, which shows the DAC steadily climbing and decreasing. It is a triangle wave because the rate that the DAC is climbing and the rate it is falling are the same, which creates peaks on the graph.
+This process was repeated for several resistors with decreasing values, which smaller, but just as steady, triangle waves.
 
-## Deliverables
-Along with what was asked in each of the parts above, for each implementation, you need to generate at least one triangle wave from your microntroller. This can be done by simply incrementing and decrementing values that are being sent to your circuit. You need to measure the output of each one of these along with taking the FFT on the scope of each one. The span on the FFT will need to go from 1kHz to about 50kHz if possible. You then need to compare the integrity of each signal by analyzing the difference in frequency components.
+## FFT 
+![R2RFFTnoload](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/trianglefft1.png)
+The FFT graph above shows the frequency response from 0 to 50kHz.
 
-The README for this part is going to be mainly about the results of your measurement along with information on the implementation. You need to also talk about how you generated the triangle wave, but do not give me a dissertation on it. Since this is going to be talking about hardware, you need to place in the README a Bill Of Materials listing all hardware used as well as link to a Digikey cart which contains the parts needed in the right quantity. You do not need to include things like your F5529 or the breadboard or wires.
+## Bill of Materials
+| Materials                 | Usage    	     | 
+| ------------------------- | -------------- | 
+| Resistors: 1M, 470k, 820k | Load testing   | 
+| 7 1k Resistors            | R2R Series     | 
+| 9 2k Resistors            | R2R Parallel   | 
+| 2 10k Resistors           | LPF Unity Gain |
+| 1 100nF Capacitor         | LPF Capacitor  |
+| 1 LM324 Op Amp            | LPF Op Amp     |
+
+
