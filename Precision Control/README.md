@@ -4,6 +4,9 @@ It makes sense that one would be able to alter the output voltage or current in 
 ## PWM
 Since the PWM code has already been created in a previous lab, all that really leaves is the hardware aspects. 
 
+## Active Low Pass Filter
+An active low pass filter was constructed in order to test the output of the system with an input driven by the processor which is outputting a PWM signal.
+
 ## R2R DAC
 Sometimes a system needs to be more accurate than it currently might be, for purposes of measurements or precision. One way to fix this issue is to use a DAC, or digital to analog converter.
 ![R2RDAC](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/R2R_DAC.png)
@@ -20,7 +23,7 @@ This process was repeated for several resistors with decreasing values, which sm
 ## FFT 
 ![R2RFFTnoload](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/trianglefft1.png)
 
-The FFT graph above shows the frequency response from 0 to 50kHz.
+The figure above displays the output of the unloaded DAC with a triangle wave input as well as the FFT of the system. The FFT graph above shows the frequency response from 0 to 50kHz.
 
 ## Bill of Materials
 | Materials                 | Usage    	     | 
