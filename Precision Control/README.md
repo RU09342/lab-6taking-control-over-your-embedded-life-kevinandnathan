@@ -6,6 +6,13 @@ Since the PWM code has already been created in a previous lab, all that really l
 
 ## Active Low Pass Filter
 An active low pass filter was constructed in order to test the output of the system with an input driven by the processor which is outputting a PWM signal.
+![lpfschematic](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/LowPassFilter.png)
+
+The figure above displays the low pass filter schematic used. We went for unity gain through the use of two 10k resistors as well as a 100nF capacitor which gave a cutoff frequency of 159 Hz.
+We ran a PWM signal of 50% duty cycle with an amplitude of 3.3V and received the following output signal:
+![lpfpwm1](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/pmw50-uart1.png)
+
+As displayed in the figure above, the output amplitude was 1.63V, which is approximately half of the input implitude, which corresponds to the theory.
 
 ## R2R DAC
 Sometimes a system needs to be more accurate than it currently might be, for purposes of measurements or precision. One way to fix this issue is to use a DAC, or digital to analog converter.
@@ -20,6 +27,10 @@ Once the DAC is completed and operational, it is important to add a load that ca
 The graph above shows what happens when a 1M ohm resistor was placed at the end of the DAC. A perfect triangle wave was returned on the oscilloscope, which shows the DAC steadily climbing and decreasing. It is a triangle wave because the rate that the DAC is climbing and the rate it is falling are the same, which creates peaks on the graph.
 This process was repeated for several resistors with decreasing values, which smaller, but just as steady, triangle waves.
 
+The same was done with the low pass filter. The results are as follows:
+![lpfpwmload](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/pmw50-uart-560k1.png)
+
+The output of the low pass filter with a load higher than 560k displayed a flatline. The figure above displays the output with a load of 560k.
 ## FFT 
 ![R2RFFTnoload](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/trianglefft1.png)
 
