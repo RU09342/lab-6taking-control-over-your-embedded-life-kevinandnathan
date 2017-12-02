@@ -11,6 +11,7 @@ The fan we chose to operate within our circuit ran off of 12 volts, which is wel
 As stated above, the 6989 was chosen because it is able to display numerical values and characters on it’s built in LCD display screen. We used this to our full advantage and displayed the changing ADC values from the temperature sensor on the screen for ease of access. The targeted temperatures for this lab were achieved by using a conversion from degrees celsius to PWM value based on the duty cycle from 0 to 100%. The conversion equations are shown below where Y is duty cycle and X is degrees celsius. The equations would need to be multiplied by 2.55 to be converted to PWM for our coding purposes and we had an upper temperature range equation which is the first equation for 90-50 degrees celsius and a lower range equation which is the second equation for 50-35 degrees celsius. The equation was split like this to create a better fit for the data we recorded.
 
 (1) y = -0.2533x + 22.449
+
 (2) y = 0.3368x2 - 34.397x + 888.18
  
 # System Modeling
