@@ -1,16 +1,16 @@
-# Lab 6: "High Power" Control
-For starters, you will not be dealing with anything that is truly "high power". Instead, what I am considering "high power" is anything with the potential to damage or fry your microcontrollers if you were to drive them directly. The idea behind this part of the lab is to learn how not only to drive things that may require a high voltage or high current, but how to then protect your microcontroller from them.
+Lab 6: "High Power" Control
+The high power control describes the methods that we are going to be controlling a 12 volt DC fan. While 12 volts isn’t technically high power the current and voltage draw of this device cannot be driven using the power delivered by our launchpad boards which is more designed to allow for computer logic functions. In order to properly control the fan we need to change the voltage and current being delivered to the fan. This can be done using a pwm signal and a “switch” device that can turn on and off the power from an external source to the fan based on our logic level PWM signal.
+Switching
+There are 2 devices we examined for switching power to the fan in our system a relay and a mosfet.
 
-## Switching
-Most of you have used one of the types of switching circuits to control the RGB LEDs. For this part of the lab, you need to focus on the different types of switching circuits along with the differences in inductive and resistive loads.
+A relay is a mechanical switch that allows for switching between open and closed, depending on the current input on an inductor in the relay. Relays are useful because they can handle larger amounts of current, but do generally need a voltage higher than 3.3V supplied by the launchpad leaving us with the same issue as before. 
 
-### Relays
-A relay is a electro-mechanical system which can open and close a switch based on an input. 
-![Relay](https://www.phidgets.com/docs/images/1/1d/3051_1_Relay_Diagram.jpg)
-These are extremely useful in situations where large amounts of current need to flow, such as in automotive applications, but they do have their limits. For starters, since the actuation process requires a constant current, sometimes this can be too much for your processor to handle. Second, a lot of these relays require higher than 3.3V, which limits how you can actually turn these things on and off. Using the MSP430G2553, control the state of a relay to drive a power resistor with +12V. Your README for this part should include a screenshot of the output of your MSP and the voltage across the resistor. Try to figure out the switching speed limitations of the relay experimentally.
+A MOSFET, specifically an NMOS, is used to control the current going through the circuit. Applying a voltage difference to the gate allows the flow of current from the drain to the source. This allows us to not only control the fan but also to control the relay.
 
-### MOSFET Switching
-The MOSFET switch is a very simple circuit which can be used in a multitude of applications. One of the most important features of the MOSFET Switch is the near zero current it takes to switch the MOSFET from an on to an off state. There are two main architectures, low-side and high-side switch, each requiring a different type of MOSFET. Using the MSP430G2553, drive a power resistor with +12V in the same fashion as the relay. Obtain an MSP430G2553 voltage output along with the voltage through the power resistor. Try to figure out the switching speed limitations of the MOSFET experimentally.
+Lastly, the MSP430G2553 is used simply to toggle the NMOS via a PWM signal because the microprocessor can be removed from the launchpad and replaced from the tech office.
+Usage
 
-## Deliverables
-Along with what was asked in each part, you will need to utilize the DMM to determine what the current draw from each switch is and if that falls into spec with the Microcontroller. You need to then come up with the best configuration you can think of using to control something that requires large current, but also protects your processor from damage. The reason I am asking you to do this with just the G2553 is: A) The code is just generating a square wave, and B) this part of the lab runs the highest chance of damaging your parts and we have spare G2553's just in case.
+The first circuit set up was the relay circuit. The purpose of this circuit was to show that the MSP boards cannot drive high power circuits on their own, and must use external sources for help. Relays are able to handle extremely high levels of current flowing through them. This is done to attempt to prevent damage to the MSP430G2553 while still allowing the usage of the switch mechanism itself.
+
+The MOSFET circuit, on the other hand, was used to show other alternatives to the relay that allow for switches, without the need for extremely high current in a circuit.  The low need for current in a MOSFET makes it desireable over a relay in some cases, especially when working with low-level equipment, such as the MSP’s that cannot handle very high levels of current.
+

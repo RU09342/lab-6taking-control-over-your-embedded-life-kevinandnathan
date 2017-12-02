@@ -1,27 +1,19 @@
-# Lab 6: Open Loop Systems
-Believe it or not, up to this point, any time that you have wanted to control your LED color or brightness so far, you have been attempting to control an Open Loop System. Basically, when in your code you state that you want a certain brightness or even a duty cycle, you are going on blind faith that the output is actually what it is supposed to be. If something seemed off, you probably went back into the code and tweaked some values. In the case of actual Systems and Control Theory, you are the feedback loop, providing some corrective signal to the system to help obtain a closer output, and we will deal with this in the Milestone. For now, we need to focus on system modeling getting a system to a desirable state. For this lab, you will be attempting to keep a voltage regulator within a specific temperature range using a DC fan which you will have control over. For this part to be a success, you need to figure out what is the minimum fan speed you need to cool off the regulator so that is stays operational.
+Lab 6: Open Loop Systems
+An open loop system is one that is directly controlled by user input, as opposed to being dependent on an equation or code function to properly operate. Any time a circuit asks for a value or character from an outside source, such as a person using code for example, it is considered an open loop circuit.
+Voltage Regulator
+A 5 volt regulator is a device that is able to provide 5 Volts while taking in up to 20 volts. The regulator produces heat which is how the additional current and volt are removed from the device so depending on what the regulator is powering the excess power being drawn from the power supply will become heat that we use to raise the temperature so we have something to cool with the fan. 
+Board Selection
+The board we chose to use for this section was the MSP430FR6989. This board was chosen because of its built-in LCD display screen, which was used to visually show the temperature changing as an ADC value. We avoided adding conversion code that would slow down our temperature readings. For the load on the regulator output we had a 5 Watt 100 ohm resistor that gave us a good temperature range for the lab requirements.
+Fan Control
+The fan we chose to operate within our circuit ran off of 12 volts, which is well above the capacity of the MSP4306989. We used a NMOS mosfet to switch the power supplied from to the fan on and off with a PWM signal. The duty cycle would essentially control when the fan was on and off which could be pretty noisy if the fan was being switched at a fast rate. We placed the fan directly head on, facing the circuit perpendicularly, to make sure the 5 volt regulator got as much cooling as possible.
 
-## Voltage Regulator
-You will need to take a 5V regulator from the back of the lab and drop the output across a 100 ohm power resistor (1 watt should do the trick). The input to the voltage regulator will be between 15-20V. I am giving you a range because when it is dropping a ton of voltage, it may not be able to cool it off enough with just a fan. Most of the voltage regulators in the back will have a tab on the top which we can place a thermistor to. If provided, you can use that tab, or place a through-hole thermistor making contact to the component on your board.
+Temperature Reading
+As stated above, the 6989 was chosen because it is able to display numerical values and characters on it’s built in LCD display screen. We used this to our full advantage and displayed the changing ADC values from the temperature sensor on the screen for ease of access. The targeted temperatures for this lab were achieved by using a conversion from degrees celsius to PWM value based on the duty cycle from 0 to 100%. The conversion equations are shown below where Y is duty cycle and X is degrees celsius. The equations would need to be multiplied by 2.55 to be converted to PWM for our coding purposes and we had an upper temperature range equation which is the first equation for 90-50 degrees celsius and a lower range equation which is the second equation for 50-35 degrees celsius. The equation was split like this to create a better fit for the data we recorded.
+(1)
+(2)
+ 
+System Modeling
 
-## Fan Control
-It will be up to you, the engineer, to decide which method you want to use to control the DC fan. Most of these fans run off of 5V, and as such can not directly be driven by your microcontroller. Depending on the type of fan you use, some can take in a PWM control signal, others will need to have the voltage be modified. Since we are not providing you with any mechanical mounts, you are free to place the fan in whatever orientation you wish, so long as it is safe to operate.
+The lowest temperature achieved by the regulator when the fan was running at maximum PWM was about 35 degrees Celsius. When the fan was off, the regulator easily heated up to about 100 degrees Celsius. This became too high, however, and the regulators internal trip went off and the temperature began to decrease on its own again.
 
-## Temperature Reading
-It would be really useful to see what the temperature of your system is so you can determine the performance of your system. This can be done either by displaying the current temperature over a display, passing the information over UART, or other ways as well. Remember that UART is Asynchronous, meaning that you can send information whenever you would like from your controller back to a PC, it doesn't have to be reactionary. If you used MATLAB in Lab 5, you could even plot the temperature over time which could be extremely useful in figuring out whether your system is actually doing something. 
-
-
-## System Modeling
-For starters, you need to figure out with your fan at MAX what the temperature that the voltage regulator reaches. Your thermistors/PTATs/Whatever else you want to use to measure temperature may not be calibrated, so your results may be consistently off with reality, but for now that is ok. After figuring this out, in increments of about 5C, see what fan speed you need to have to maintain that temperature. Do this until your regulator gets down to about 30C-40C, keeping a record of what your applied Duty Cycles or voltages were. Then using this information, attempt to find a transfer function between the applied input and the resulting temperature to model the system behavior. A simple way to do this is in MATLAB or Excel to plot your applied input on the x-axis, and your steady state temperature on your y-axis and attempt a line fit.
-
-## Open Loop Control System
-You then need to use this information to make a final open loop control system where a user can state what temperature they want the regulator to be maintained at, and the microcontroller will basically calculate/look up what it needs to set the fan to. Do not over complicate this and make it some elaborate system. All this needs to do is some math and set a duty cycle or voltage, and display in some capacity the current temperature of the system as you are measuring it.
-
-
-## Deliverables
-Your README needs to contain schematics of your system, the plot of the plot of the temperature and input voltages at the 5C steps, and a brief talk about why you chose the processor you did along with the control technique for the fan. As always, you should include a brief description of the code you generated to run the experiment. You need to also include information on how to use your control software, including what inputs it is expecting and what range of values you are expecting. At this time you are not going to need to user-proof the system, but you will for the milestone, so keep it in the back of your head.
-
-### What your README and code doesn't need
-For starters, note the fact I ask you to do this with only one board. You also do not need to give me all of your code in the README, just tell me functionally what is going on along with showing off any functions you may have made.
-
-Your code *DOES NOT* need to perform any sort of closed loop control. Save that for the milestone. This means that your system does not need to try to actively change the fan speed without your help. You are going to essentially make your microcontroller one big Convert-o-Box to turn a desired temperature into a controllable signal, and then be able to read a temperature.
+By looking at the chart above, it can be seen that 5 degrees Celsius is a change of about 62 AD. This can be used to calculate values above and below those that appear above.
