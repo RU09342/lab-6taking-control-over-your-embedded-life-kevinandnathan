@@ -6,6 +6,7 @@ Since the PWM code has already been created in a previous lab, all that really l
 
 ## Active Low Pass Filter
 An active low pass filter was constructed in order to test the output of the system with an input driven by the processor which is outputting a PWM signal.
+
 ![lpfschematic](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/LowPassFilter.png)
 
 The figure above displays the low pass filter schematic used. We went for unity gain through the use of two 10k resistors as well as a 100nF capacitor which gave a cutoff frequency of 159 Hz.
@@ -22,16 +23,26 @@ The picture above shows a standard DAC used in this lab. A DAC consists of sever
 
 ## Loading Effects
 Once the DAC is completed and operational, it is important to add a load that can test the capabilities of the system. This can be simulated by placing different valued resistors at the end of the circuit.
+
+![R2R820](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/r2r-ladder-820k.png)
+
+The figure above displays the output of the R2R DAC with 3.3V through the circuit. The output is a ramp function that is decreased in amplitude. We have more pictures of the output under different loads labeled accordingly.
+
 ![R2R1MEG](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/triangle1meg1.png)
 
-The graph above shows what happens when a 1M ohm resistor was placed at the end of the DAC. A perfect triangle wave was returned on the oscilloscope, which shows the DAC steadily climbing and decreasing. It is a triangle wave because the rate that the DAC is climbing and the rate it is falling are the same, which creates peaks on the graph.
+The graph above shows what happens when a 1M ohm resistor was placed at the end of the DAC with a triangle wave input from the microprocessor. A perfect triangle wave was returned on the oscilloscope, which shows the DAC steadily climbing and decreasing. It is a triangle wave because the rate that the DAC is climbing and the rate it is falling are the same, which creates peaks on the graph.
 This process was repeated for several resistors with decreasing values, which smaller, but just as steady, triangle waves.
 
 The same was done with the low pass filter. The results are as follows:
+
 ![lpfpwmload](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/pmw50-uart-560k1.png)
 
 The output of the low pass filter with a load higher than 560k displayed a flatline. The figure above displays the output with a load of 560k.
 ## FFT 
+![lpffft](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/lpffft.png)
+
+The figure above displays the FFT of the output of the lowpass filter. This displays the frequency response from 0 to 50kHz. As expected, it looks like a standard low pass response.
+
 ![R2RFFTnoload](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/trianglefft1.png)
 
 The figure above displays the output of the unloaded DAC with a triangle wave input as well as the FFT of the system. The FFT graph above shows the frequency response from 0 to 50kHz.
