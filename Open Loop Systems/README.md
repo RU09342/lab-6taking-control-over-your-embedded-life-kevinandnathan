@@ -21,4 +21,6 @@ As stated above, the 6989 was chosen because it is able to display numerical val
 # System Modeling
 The lowest temperature achieved by the regulator when the fan was running at maximum PWM was about 35 degrees Celsius. When the fan was off, the regulator easily heated up to about 100 degrees Celsius. This became too high, however, and the regulators internal trip went off and the temperature began to decrease on its own again.
 
+![19 Volt graph](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Open%20Loop%20Systems/19V.PNG)
+
 By looking at the chart above, it can be seen that 5 degrees Celsius is a change of about 62 AD. This can be used to calculate values above and below those that appear above.
