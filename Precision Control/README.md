@@ -13,13 +13,14 @@ The figure above displays the low pass filter schematic used. We went for unity 
 We ran a PWM signal of 50% duty cycle with an amplitude of 3.3V and received the following output signal:
 ![lpfpwm1](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/pmw50-uart1.png)
 
-As displayed in the figure above, the output amplitude was 1.63V, which is approximately half of the input implitude, which corresponds to the theory.
+As displayed in the figure above, the output amplitude was 1.63V, which is approximately half of the input amplitude, which corresponds to the theory.
 
 ## R2R DAC
 Sometimes a system needs to be more accurate than it currently might be, for purposes of measurements or precision. One way to fix this issue is to use a DAC, or digital to analog converter.
 ![R2RDAC](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Precision%20Control/R2R_DAC.png)
 
-The picture above shows a standard DAC used in this lab. A DAC consists of several matching resistors in series with one another, and another set of different value matching resistors coming from several different sources, that meet up with the original resistors. In this case, we used 1k resistors strung together in series, and 2k resistors branching onto them, as well as a 2k resistor at the end.
+The picture above shows a standard DAC used in this lab. A DAC consists of several matching resistors in series with one another, and another set of different value matching resistors coming from several different sources, that meet up with the original resistors. In this case, we used 1k resistors strung together in series, and 2k resistors branching onto them, as well as a 2k resistor at the end. Since the 5529 only has 7 pins available on a single port the code had to use an additional pin for implementation of an 8 bit R2R DAC. The pins used were P6.0 through P6.6 and P2.7 was used as the most significant bit allowing for the R2R code to utilize a two for loops for showing the functionality of the DAC. The 8 output pins are attached to the floating end of the 2k resistors. The order of the connections was P6.0 to P6.6 then P2.7 was used for the most significant bit.
+
 
 ## Loading Effects
 Once the DAC is completed and operational, it is important to add a load that can test the capabilities of the system. This can be simulated by placing different valued resistors at the end of the circuit.
