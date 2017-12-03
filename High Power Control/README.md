@@ -13,4 +13,19 @@ Lastly, the MSP430G2553 is used simply to toggle the NMOS via a PWM signal becau
 ## Usage
 The first circuit set up was the relay circuit. The purpose of this circuit was to show that the MSP boards cannot drive high power circuits on their own, and must use external sources for help. Relays are able to handle extremely high levels of current flowing through them. This is done to attempt to prevent damage to the MSP430G2553 while still allowing the usage of the switch mechanism itself.
 
+## 12 Volt Relay Circuit
+![12 Volt Relay circuit](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/High%20Power%20Control/RelayCircuit.PNG)
+
 The MOSFET circuit, on the other hand, was used to show other alternatives to the relay that allow for switches, without the need for extremely high current in a circuit.  The low need for current in a MOSFET makes it desireable over a relay in some cases, especially when working with low-level equipment, such as the MSP’s that cannot handle very high levels of current.
+
+## NMOS Circuit
+![NMOS Circuit](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/High%20Power%20Control/NMOS_Circuit.PNG)
+
+# Scopes
+
+## Relay 1Hz
+![1Hz Relay](![NMOS Circuit](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/High%20Power%20Control/NMOS_Circuit.PNG))
+## Mosfet 1Hz
+![1 Hz Mosfet](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/High%20Power%20Control/scope_Mosfet.png)
+## Mosfet 260Hz
+![Mosfet 260HZ](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/High%20Power%20Control/scope_mofet_max.png)
