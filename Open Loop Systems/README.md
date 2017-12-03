@@ -19,6 +19,6 @@ As stated above, the 5529 was chosen because we already had code written to send
 (2) y = 0.3368x2 - 34.397x + 888.18
  
 # System Modeling
-In order to characterize the cooling effect of the fan on the 5 volt regulator we did this using the osciliscope to view the temperature on the LM35 temperature sensor as we ran the fan at different PWM duty cycles. The graph that we made of the temperature vs PWM can be seen below for 19 Volts across the 5 volt regulator and fan.
+In order to characterize the cooling effect of the fan on the 5 volt regulator we did this using the osciliscope to view the temperature on the LM35 temperature sensor as we ran the fan at different PWM duty cycles. The graph that we made of the temperature vs PWM can be seen below for 19 Volts across the 5 volt regulator and fan with a paper clip attached to the 5 Volt regulator as a heat sink.
 
 ![19 Volt graph](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Open%20Loop%20Systems/19V.PNG)
