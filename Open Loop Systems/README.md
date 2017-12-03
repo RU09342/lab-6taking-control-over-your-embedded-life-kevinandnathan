@@ -3,9 +3,9 @@ An open loop system is one that is directly controlled by user input, as opposed
 # Voltage Regulator
 ![5 Volt Regulator pinout](https://www.electrical4u.com/images/2017/march/1489671183.png)
 
-A 5 volt regulator is a device that is able to provide 5 Volts while taking in up to 20 volts. The regulator produces heat which is how the additional current and volt are removed from the device so depending on what the regulator is powering the excess power being drawn from the power supply will become heat that we use to raise the temperature so we have something to cool with the fan. 
+A 5 volt regulator is a device that is able to provide 5 Volts while taking in up to 20 volts. The LM 7805 was the 5 Volt Regulator used in this system its pinout can be seen in the picture above. The regulator produces heat which is how the additional current and volt are removed from the device so depending on what the regulator is powering the excess power being drawn from the power supply will become heat that we use to raise the temperature so we have something to cool with the fan. For the load on the regulator output we had a 5 Watt 100 ohm resistor that gave us a good temperature range for the lab requirements.
 # Board Selection
-The board we chose to use for this section was the MSP430FR6989. This board was chosen because of its built-in LCD display screen, which was used to visually show the temperature changing as an ADC value. We avoided adding conversion code that would slow down our temperature readings. For the load on the regulator output we had a 5 Watt 100 ohm resistor that gave us a good temperature range for the lab requirements.
+The board we chose to use for this section was the MSP430FR6989. This board was chosen because of its built-in LCD display screen, which was used to visually show the temperature changing as an ADC value. We avoided adding conversion code that would slow down our temperature readings. 
 # Fan Control
 ![Open Loop Schematic](https://github.com/RU09342/lab-6taking-control-over-your-embedded-life-kevinandnathan/blob/master/Open%20Loop%20Systems/OpenloopSchematic.PNG)
 
