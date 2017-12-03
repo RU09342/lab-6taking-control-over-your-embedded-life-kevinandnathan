@@ -1,8 +1,8 @@
-# Precision Control
+# Lab 6: Precision Control
 It makes sense that one would be able to alter the output voltage or current in a handmade circuit. In a practical application, it is important for a system to be responsive to the user and as accurate as possible. The goal of this section is to change the outcome of the circuit to whatever value the user desires.
 
 ## PWM
-Since the PWM code has already been created in a previous lab, all that really leaves is the hardware aspects. 
+The PWM code used for this portion of the lab was for the MSP430 5529 and had UART capabilities added to the code to enable the use of Realterm to feed in a value that would become the PWM output by the board. The output pin was P1.2 and the UART was on pins P3.3 for TXD and pins P3.4 for RXD. 
 
 ## Active Low Pass Filter
 An active low pass filter was constructed in order to test the output of the system with an input driven by the processor which is outputting a PWM signal.
